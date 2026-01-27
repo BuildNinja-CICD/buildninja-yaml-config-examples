@@ -1,0 +1,54 @@
+# .NET build configuration using MSBuild and VSTest runners
+# Builds solution and runs unit tests
+
+name: dotnet-build
+description: .NET build with MSBuild and VSTest
+version: 1.0
+
+settings:
+  vcs-steps:
+    - name: Checkout Repository
+      key: vcs_git
+      disabled: false
+      args:
+        url: https://github.com/example/dotnet-project.git
+        branch: main
+        authType: anonymous
+
+  build-steps:
+    - key: runner_cmd
+      name: Restore NuGet Packages
+      disabled: false
+      workDir: ""
+      args:
+        commands: dotnet restore
+      argsProtected: {}
+
+    - key: runner_msbuild
+      name: Build Solution
+      disabled: false
+      workDir: ""
+      args:
+        solution: MyApp.sln
+        configuration: Release
+        parameters: "/m"
+      argsProtected: {}
+
+    - key: runner_vstest
+      name: Run Unit Tests
+      disabled: false
+      workDir: ""
+      args:
+        testAssembly: tests/MyApp.Tests.dll
+        reportDir: reports
+        reportName: test-results
+        failCriterian: failedTests
+        args: ""
+      argsProtected: {}
+
+  artifacts:
+    - name: build-output
+      condition: buildSucceeds
+      paths:
+        - bin/Release
+        - reports

@@ -1,0 +1,39 @@
+# Multi-step build demonstrating sequential commands
+# Shows how to chain multiple build steps
+
+name: multi-step-build
+description: Build with multiple sequential steps
+version: 1.0
+
+settings:
+  build-steps:
+    - key: runner_cmd
+      name: Check Environment
+      disabled: false
+      workDir: ""
+      args:
+        commands: |-
+          echo "Build started"
+          echo "Current directory:"
+          pwd
+      argsProtected: {}
+
+    - key: runner_cmd
+      name: System Information
+      disabled: false
+      workDir: ""
+      args:
+        commands: |-
+          echo "System info:"
+          uname -a
+          echo "Disk space:"
+          df -h
+      argsProtected: {}
+
+    - key: runner_cmd
+      name: Build Complete
+      disabled: false
+      workDir: ""
+      args:
+        commands: echo "Build completed successfully"
+      argsProtected: {}

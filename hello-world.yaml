@@ -1,0 +1,16 @@
+# Simplest possible BuildNinja configuration
+# Use this to verify your Config File runner setup works
+
+name: hello-world
+description: Simple hello world build to test Config File runner
+version: 1.0
+
+settings:
+  build-steps:
+    - key: runner_cmd
+      name: Say Hello
+      disabled: false
+      workDir: ""
+      args:
+        commands: echo Hello BuildNinja
+      argsProtected: {}

@@ -1,0 +1,40 @@
+# Build configuration with artifact collection
+# Demonstrates different artifact conditions
+
+name: build-with-artifacts
+description: Build that collects artifacts on success
+version: 1.0
+
+settings:
+  build-steps:
+    - key: runner_cmd
+      name: Create Build Output
+      disabled: false
+      workDir: ""
+      args:
+        commands: |-
+          mkdir -p output/dist
+          echo "Build artifact content" > output/dist/app.txt
+          echo "Build completed at $(date)" > output/dist/build-info.txt
+      argsProtected: {}
+
+    - key: runner_cmd
+      name: Create Logs
+      disabled: false
+      workDir: ""
+      args:
+        commands: |-
+          mkdir -p logs
+          echo "Build log content" > logs/build.log
+      argsProtected: {}
+
+  artifacts:
+    - name: build-output
+      condition: buildSucceeds
+      paths:
+        - output/dist
+
+    - name: build-logs
+      condition: always
+      paths:
+        - logs

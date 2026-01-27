@@ -1,0 +1,48 @@
+# Node.js build configuration
+# Installs dependencies, builds, and runs tests
+
+name: nodejs-build
+description: Standard Node.js build with npm
+version: 1.0
+
+settings:
+  vcs-steps:
+    - name: Checkout Repository
+      key: vcs_git
+      disabled: false
+      args:
+        url: https://github.com/example/nodejs-project.git
+        branch: main
+        authType: anonymous
+
+  build-steps:
+    - key: runner_cmd
+      name: Install Dependencies
+      disabled: false
+      workDir: ""
+      args:
+        commands: npm install
+      argsProtected: {}
+
+    - key: runner_cmd
+      name: Run Build
+      disabled: false
+      workDir: ""
+      args:
+        commands: npm run build
+      argsProtected: {}
+
+    - key: runner_cmd
+      name: Run Tests
+      disabled: false
+      workDir: ""
+      args:
+        commands: npm test
+      argsProtected: {}
+
+  artifacts:
+    - name: build-output
+      condition: buildSucceeds
+      paths:
+        - dist
+        - build
