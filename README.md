@@ -13,6 +13,17 @@ Ready-to-use YAML configurations for BuildNinja Config File runner. Config as co
 5. Enter the path to your YAML file (e.g., `hello-world.yaml`)
 6. Run the build
 
+## Real Project Examples
+
+For ready-to-use configurations that build real open-source projects, see:
+
+**[buildninja-quickstart](https://github.com/BuildNinja-CICD/buildninja-quickstart)** - 10 working configs including:
+- ripgrep (Rust, 59K stars)
+- Facebook Lexical (TypeScript, 22K stars)
+- Open WebUI (Python/Vite, 75K stars)
+- Reactive Resume (pnpm monorepo, 970K users)
+- And more...
+
 ## Examples
 
 | File | Description | Runners Used |
