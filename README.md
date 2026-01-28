@@ -13,6 +13,8 @@ Ready-to-use YAML configurations for BuildNinja Config File runner. Config as co
 5. Enter the path to your YAML file (e.g., `hello-world.yaml`)
 6. Run the build
 
+> **Note:** When using the Config File runner, VCS settings must be configured manually in BuildNinja's UI. The `vcs-steps` section in YAML files is for documentation purposes only and will be ignored during build execution.
+
 ## Real Project Examples
 
 For ready-to-use configurations that build real open-source projects, see:
